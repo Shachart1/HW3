@@ -1,0 +1,350 @@
+Negative capacity!
+The queue is empty
+The queue is empty
+
+Starts iterating q1...
+Queue size: 0
+Is empty? true
+Done iterating
+
+Starts iterating q1...
+Queue size: 1
+Is empty? false
+A: 1
+Done iterating
+
+Peek: A: 1
+Deque: A: 1
+
+Starts iterating q1...
+Queue size: 0
+Is empty? true
+Done iterating
+
+Starts iterating q2...
+Queue size: 2
+Is empty? false
+A: 1
+A: 2
+Done iterating
+
+Is q1 == q3? false
+Is q2 == q3? false
+Is q1 == q4? false
+Is q2 == q4? false
+
+Starts iterating q3...
+Queue size: 2
+Is empty? false
+A: 1
+A: 2
+Done iterating
+
+Starts iterating q1...
+Queue size: 2
+Is empty? false
+A: 15
+A: 2
+Done iterating
+
+Starts iterating q2...
+Queue size: 2
+Is empty? false
+A: 15
+A: 2
+Done iterating
+
+Starts iterating q3...
+Queue size: 2
+Is empty? false
+A: 1
+A: 2
+Done iterating
+
+Starts iterating q4...
+Queue size: 2
+Is empty? false
+A: 1
+A: 2
+Done iterating
+
+Starts iterating q1...
+Queue size: 3
+Is empty? false
+A: 15
+A: 2
+A: 3
+Done iterating
+
+Starts iterating q2...
+Queue size: 3
+Is empty? false
+A: 15
+A: 2
+A: 3
+Done iterating
+
+Starts iterating q3...
+Queue size: 2
+Is empty? false
+A: 1
+A: 2
+Done iterating
+
+Starts iterating q4...
+Queue size: 2
+Is empty? false
+A: 1
+A: 2
+Done iterating
+
+Starts iterating q1...
+Queue size: 4
+Is empty? false
+A: 15
+A: 2
+A: 3
+A: 4
+Done iterating
+
+Starts iterating q1...
+Queue size: 5
+Is empty? false
+A: 15
+A: 2
+A: 3
+A: 4
+A: 5
+Done iterating
+
+Starts iterating q2...
+Queue size: 5
+Is empty? false
+A: 15
+A: 2
+A: 3
+A: 4
+A: 5
+Done iterating
+
+Starts iterating q3...
+Queue size: 2
+Is empty? false
+A: 1
+A: 2
+Done iterating
+
+Starts iterating q4...
+Queue size: 2
+Is empty? false
+A: 1
+A: 2
+Done iterating
+
+The queue reached its full capacity.
+The queue reached its full capacity.
+
+Testing of part A is over!
+
+
+l1: [(Software Engineering HW0, 13.04.2022), (Software Engineering HW3, 16.06.2022), (Software Engineering HW2, 25.05.2022), (Software Engineering HW1, 10.05.2022)]
+l1: [(Software Engineering HW0, 13.04.2022), (Software Engineering HW3, 16.06.2022), (Software Engineering HW2, 25.05.2022), (Software Engineering HW1, 10.05.2022)]
+l2: [(Software Engineering HW0, 13.04.2022), (Software Engineering HW3, 16.06.2022), (Software Engineering HW2, 25.05.2022), (Software Engineering HW1, 10.05.2022)]
+Is l1 == l2? false
+Are lists l1 and l2 equal? true
+Are lists l2 and l1 equal? true
+Is l1.equals(null)? false
+l1: [(Software Engineering HW0, 15.04.2022), (Software Engineering HW3, 16.06.2022), (Software Engineering HW2, 25.05.2022), (Software Engineering HW1, 10.05.2022)]
+l2: [(Software Engineering HW0, 13.04.2022), (Software Engineering HW3, 16.06.2022), (Software Engineering HW2, 25.05.2022), (Software Engineering HW1, 10.05.2022)]
+
+Are lists l1 and l2 equal? false
+Are lists l2 and l1 equal? false
+Cannot add the task!
+Cannot add the task!
+Cannot add the task!
+t1: Software Engineering HW0, 15.04.2022
+clonedT1: Software Engineering HW0, 15.04.2022
+Are lists 11 and clonedT1 equal? true
+Are lists clonedT1 and t1 equal? true
+Is t1 == clonedT1? false
+Is t1.equals(null)? false
+
+Starts scanning...
+Software Engineering HW0, 15.04.2022
+-----------------------------------
+Software Engineering HW1, 10.05.2022
+-----------------------------------
+Software Engineering HW2, 25.05.2022
+-----------------------------------
+Software Engineering HW3, 16.06.2022
+-----------------------------------
+After initial scanning
+
+Starting scan number 1
+Software Engineering HW0, 15.04.2022
+-----------------------------------
+Software Engineering HW1, 10.05.2022
+-----------------------------------
+Software Engineering HW2, 25.05.2022
+-----------------------------------
+Software Engineering HW3, 16.06.2022
+-----------------------------------
+After scan number 1
+
+Starting scan number 2
+Software Engineering HW0, 15.04.2022
+-----------------------------------
+Software Engineering HW1, 10.05.2022
+-----------------------------------
+Software Engineering HW2, 25.05.2022
+-----------------------------------
+After scan number 2
+
+Starting scan number 3
+Software Engineering HW0, 15.04.2022
+-----------------------------------
+Software Engineering HW1, 10.05.2022
+-----------------------------------
+After scan number 3
+
+Starting scan number 4
+After scan number 4
+
+Starting scan number 5
+Software Engineering HW0, 15.04.2022
+-----------------------------------
+Software Engineering HW1, 10.05.2022
+-----------------------------------
+Software Engineering HW2, 25.05.2022
+-----------------------------------
+Software Engineering HW3, 16.06.2022
+-----------------------------------
+After scan number 5
+
+Done scanning
+Are lists l1 and l3 equal? false
+l3: [(Software Engineering HW1, 10.05.2022)]
+Are lists l1 and l3 equal? false
+l3: [(Software Engineering HW1, 10.05.2022), (Software Engineering HW3, 16.06.2022)]
+Are lists l1 and l3 equal? false
+l3: [(Software Engineering HW1, 10.05.2022), (Software Engineering HW3, 16.06.2022), (Software Engineering HW0, 15.04.2022)]
+Are lists l1 and l3 equal? false
+l3: [(Software Engineering HW1, 10.05.2022), (Software Engineering HW3, 16.06.2022), (Software Engineering HW0, 15.04.2022), (Software Engineering HW2, 25.05.2022)]
+Are lists l1 and l3 equal? true
+Starts scanning...
+Software Engineering HW0, 15.04.2022
+-----------------------------------
+Software Engineering HW1, 10.05.2022
+-----------------------------------
+Software Engineering HW2, 25.05.2022
+-----------------------------------
+Software Engineering HW3, 16.06.2022
+-----------------------------------
+After initial scanning
+
+Starting scan number 1
+Software Engineering HW0, 15.04.2022
+-----------------------------------
+Software Engineering HW1, 10.05.2022
+-----------------------------------
+Software Engineering HW2, 25.05.2022
+-----------------------------------
+Software Engineering HW3, 16.06.2022
+-----------------------------------
+After scan number 1
+
+Starting scan number 2
+Software Engineering HW0, 15.04.2022
+-----------------------------------
+Software Engineering HW1, 10.05.2022
+-----------------------------------
+Software Engineering HW2, 25.05.2022
+-----------------------------------
+After scan number 2
+
+Starting scan number 3
+Software Engineering HW0, 15.04.2022
+-----------------------------------
+Software Engineering HW1, 10.05.2022
+-----------------------------------
+After scan number 3
+
+Starting scan number 4
+After scan number 4
+
+Starting scan number 5
+Software Engineering HW0, 15.04.2022
+-----------------------------------
+Software Engineering HW1, 10.05.2022
+-----------------------------------
+Software Engineering HW2, 25.05.2022
+-----------------------------------
+Software Engineering HW3, 16.06.2022
+-----------------------------------
+After scan number 5
+
+Done scanning
+l3: [(Software Engineering HW1, 10.05.2022), (Software Engineering HW3, 16.06.2022), (Software Engineering HW0, 15.04.2022), (Software Engineering HW2, 25.05.2022), (Calculus 2 HW4, 25.05.2022)]
+Starts scanning...
+Software Engineering HW0, 15.04.2022
+-----------------------------------
+Software Engineering HW1, 10.05.2022
+-----------------------------------
+Calculus 2 HW4, 25.05.2022
+-----------------------------------
+Software Engineering HW2, 25.05.2022
+-----------------------------------
+Software Engineering HW3, 16.06.2022
+-----------------------------------
+After initial scanning
+
+Starting scan number 1
+Software Engineering HW0, 15.04.2022
+-----------------------------------
+Software Engineering HW1, 10.05.2022
+-----------------------------------
+Calculus 2 HW4, 25.05.2022
+-----------------------------------
+Software Engineering HW2, 25.05.2022
+-----------------------------------
+Software Engineering HW3, 16.06.2022
+-----------------------------------
+After scan number 1
+
+Starting scan number 2
+Software Engineering HW0, 15.04.2022
+-----------------------------------
+Software Engineering HW1, 10.05.2022
+-----------------------------------
+Calculus 2 HW4, 25.05.2022
+-----------------------------------
+Software Engineering HW2, 25.05.2022
+-----------------------------------
+After scan number 2
+
+Starting scan number 3
+Software Engineering HW0, 15.04.2022
+-----------------------------------
+Software Engineering HW1, 10.05.2022
+-----------------------------------
+After scan number 3
+
+Starting scan number 4
+After scan number 4
+
+Starting scan number 5
+Software Engineering HW0, 15.04.2022
+-----------------------------------
+Software Engineering HW1, 10.05.2022
+-----------------------------------
+Calculus 2 HW4, 25.05.2022
+-----------------------------------
+Software Engineering HW2, 25.05.2022
+-----------------------------------
+Software Engineering HW3, 16.06.2022
+-----------------------------------
+After scan number 5
+
+Done scanning
+
+Testing of part B is over!
