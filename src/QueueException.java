@@ -1,2 +1,3 @@
-public class QueueException extends Exception{
+
+public class QueueException extends RuntimeException {
 }
