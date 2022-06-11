@@ -27,7 +27,7 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
      * @throws QueueOverflowException - queue is full and we try to enter a new element
      */
     @Override
-    public void enqueue(Cloneable element) throws QueueOverflowException{
+    public void enqueue(Cloneable element){
         // if null then the queue is empty. if not null then the tail has reached the head
 
         if (this.queueSize == queueArray.length){  //במקום אינדקס ולהסתמך על זה שזה לא null
@@ -45,7 +45,7 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
      * @throws EmptyQueueException
      */
     @Override
-    public E dequeue()throws EmptyQueueException{
+    public E dequeue(){
         if(size() == 0){throw new EmptyQueueException();}
         E element = (E)queueArray[head];
         //queueArray[head] =null;    אין צורך כי אנחנו עובדים עם queueSize
@@ -80,6 +80,8 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
     public boolean isEmpty(){
         return size()==0;
     }
+
+    //TODO
     @Override
     public ArrayQueue<E> clone(){return this;}
     @Override
@@ -87,6 +89,8 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
         return null;
     }
 
+    //CHANGES
+    // כל החריכות שלנו הן בלתי מסומנות אז הורדתי את ההצהרות שלהן
     public static class Main {
         public static void main(String[] args) {
             MyCloneable mycloneable = new MyCloneable(1);
