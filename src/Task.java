@@ -9,19 +9,53 @@ public class Task {
         this.dueDate = dueDate;
     }
 
+    /**
+     * Getters
+     */
+    public Date getDueDate(){
+        return this.dueDate;
+    }
+    public String getDescription(){
+        return this.description;
+    }
+
+    /**
+     * @return String describing the Task in the format: "(description, date)"
+     */
     @Override
     public String toString(){
-        return "(" + this.description + "," +
+        return "(" + this.description + ", " +
                 this.dueDate.getDay() + "." + this.dueDate.getMonth() + "." + this.dueDate.getYear() + ")";
     }
 
+    /**
+     * check that other is a Task. if it is then determine equality.
+     * using the unique hashCode to determine equality
+     * @param other
+     * @return true if the date and description values are equals between "this" and other. false otherwise
+     */
     @Override
     public boolean equals(Object other){
         if(other == this){return true;}
         if(other instanceof Task){
-            if(this.toString() == other.toString()){return true;}
+            if(this.hashCode() == other.hashCode()){return true;} //each set of values will have a unique hash value
         }
         return false;
+    }
+
+    /**
+     * using String's and Date's hashCode methods to determine the hashCode of a given task
+     * the format will be: dateHash0stringHash
+     * @return hash code combined from the date's hash value and the description's hash value
+     */
+    @Override
+    public int hashCode(){
+        int hash = 0;
+        hash += this.dueDate.hashCode(); //using Date's hash code
+        int descriptionHash = this.description.hashCode();
+        hash *= 10^(descriptionHash + 1);
+        hash +=  descriptionHash;//adding String's hash code to consider both date and description
+        return hash;
     }
 
 }
