@@ -77,6 +77,11 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
        // if(head< tail){return tail -head-1;} //-1 cause index shows the next free spot
         //else{return (tail +maxCapacity) - head - 1;} // adding maxCapacity to get the index to be infront
     }
+
+    /**
+     * checking if there are elements in the queue
+     * @return True if the queue is empty, false otherwise
+     */
     @Override
     public boolean isEmpty(){
         return size()==0;
@@ -92,14 +97,5 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
 
     //CHANGES
     // כל החריכות שלנו הן בלתי מסומנות אז הורדתי את ההצהרות שלהן
-    public static class Main {
-        public static void main(String[] args) {
-            MyCloneable mycloneable = new MyCloneable(1);
-            ArrayQueue testqueuearr = new ArrayQueue<MyCloneable>(4);
-            testqueuearr.enqueue(mycloneable);
-
-        }
-    }
-
 
 }
