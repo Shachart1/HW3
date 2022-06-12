@@ -2,7 +2,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class ToDoListIterator implements Iterator{
+public class ToDoListIterator implements Iterator<Task>{
     LinkedList<Task> list;
     Date dueDate;
 

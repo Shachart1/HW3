@@ -146,7 +146,6 @@ public class Main {
     /**
      * Tests for part B.
      */
-    /*
     private static void testPartB() {
         ToDoList l1 = new ToDoList();
         for (Task t : l1) {
@@ -247,7 +246,6 @@ public class Main {
     /**
      * Checks all of the scan types for a given ToDoList using different dates.
      */
-    /*
     private static void checkScans(ToDoList tdl, Date[] dates) {
         System.out.println("Starts scanning...");
         for (Task t : tdl) {
@@ -270,5 +268,4 @@ public class Main {
 
         System.out.println("Done scanning");
     }
-     */
 }

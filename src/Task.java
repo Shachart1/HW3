@@ -12,7 +12,7 @@ public class Task {
     }
 
     /**
-     * Getters
+     * Getters and Setters
      */
     public Date getDueDate(){
         return this.dueDate;
@@ -20,6 +20,10 @@ public class Task {
     public String getDescription(){
         return this.description;
     }
+    public void setDueDate(Date dueDate){
+        this.dueDate = dueDate;
+    }
+
 
     /**
      * @param num
@@ -75,15 +79,14 @@ public class Task {
 
     /**
      * using the clone methods of String and Date classes to deep copy Task
-     * @param task that needs to be cloned
      * @return cloned Task
      */
-    public Task clone(Task task){
+    public Task clone(){
         try{
             Method descCloneMethod = String.class.getMethod("clone");
-            String newDescription = (String) descCloneMethod.invoke(task.description);
+            String newDescription = (String) descCloneMethod.invoke(this.description);
             Method dateCloneMethod = Date.class.getMethod("clone");
-            Date newDueDate =(Date) dateCloneMethod.invoke(task.dueDate);
+            Date newDueDate =(Date) dateCloneMethod.invoke(this.dueDate);
             Task cloned = new Task(newDescription, newDueDate);
             return cloned;
         }
@@ -91,7 +94,4 @@ public class Task {
         catch(IllegalAccessException e){return null;}
         catch (InvocationTargetException e){return null;}
         }
-
-
-    }
 }
