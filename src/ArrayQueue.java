@@ -1,3 +1,5 @@
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Iterator;
 
 public class ArrayQueue<E extends Cloneable> implements Queue{
@@ -12,15 +14,17 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
      * @param maxCapacity - length of line
      * @throws NegativeCapacityException - if maxCapacitiy is negative
      */
-    public ArrayQueue(int maxCapacity) {// לא צריך להצהיר בגלל שזה חריגה בלתי מסומנת יעני runtime
+    public ArrayQueue(int maxCapacity, E... elements) {// לא צריך להצהיר בגלל שזה חריגה בלתי מסומנת יעני runtime
         if(maxCapacity < 0){
             throw new NegativeCapacityException();
         }
         //this.maxCapacity = maxCapacity;
         this.queueArray = new Cloneable[maxCapacity];
+        // if some elements were provided add them to the queue
+        for(E element: elements){
+            this.enqueue(element);
+        }
     }
-
-    //TODO
 
     /**
      * checks for room in the queue and if there is available room, enter the element to the end of the queue
@@ -87,9 +91,24 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
         return size()==0;
     }
 
-    //TODO
     @Override
-    public ArrayQueue<E> clone(){return this;}
+    public ArrayQueue<E> clone(){
+        ArrayQueue cloned = new ArrayQueue(this.queueSize);
+        for(E element: this.queueArray){
+            try {
+                Method cloneMethod = element.getClass().getMethod("clone");
+                cloned.enqueue((Cloneable) cloneMethod.invoke(element)); // upcasting in order to insert to queue
+            }
+            // Can't happen since E extends Cloneable
+            catch(NoSuchMethodException e){return null;}
+            // If there is no access then the element is not cloneable to us, so we can't add it to the cloned queue
+            catch(IllegalAccessException e){return null;}
+            // Can't be since E extends Cloneable and thus needs to be able to be cloned
+            catch (InvocationTargetException e){return null;}
+        }
+        return cloned;
+    }
+
     @Override
     public Iterator iterator() {
         return null;

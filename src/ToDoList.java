@@ -5,8 +5,7 @@ public class ToDoList {
 
 
     /**
-     * adding the given tasks to the taskList in a sorted manner.
-     * first sort by date and then by description.
+     * adding the given tasks to the taskList using the addTask method
      * @param tasks
      */
     public ToDoList(Task... tasks) {
