@@ -82,4 +82,14 @@ public class ToDoList implements TaskIterable{
     public Iterator iterator(){
         return new ToDoListIterator(taskList, limitDueDate);
     }
+    @Override
+    public int hashCode(){
+        int hash = 0;
+        for(Task task: this){
+            hash*=10^(getNumDigits(task.hashCode()));
+            hash+= super.hashCode(task);//adding String's hash code to consider both date and description
+        }
+        return hash;
+    }
+
 }
