@@ -1,9 +1,10 @@
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class ToDoList {
+public class ToDoList implements TaskIterable{
     LinkedList<Task> taskList; //need a dynamic list since we don't have a size limit and need to be able to sort
-
+    Date limitDueDate = null;
 
     /**
      * adding the given tasks to the taskList using the addTask method
@@ -73,7 +74,12 @@ public class ToDoList {
     }
 
     @Override
+    public void setScanningDueDate(Date dueDate){
+        this.limitDueDate = dueDate;
+    }
+
+    @Override
     public Iterator iterator(){
-        return new toDoListIterator()
+        return new ToDoListIterator(taskList, limitDueDate);
     }
 }
