@@ -7,6 +7,7 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
     int head = 0;
     int queueSize = 0;
 
+    //TODO - add the option to get a list of cloneable
     /**
      * @param maxCapacity - length of line
      * @throws NegativeCapacityException - if maxCapacitiy is negative
