@@ -1,3 +1,5 @@
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Date;
 
 public class Task {
@@ -69,5 +71,27 @@ public class Task {
         hash *= 10^(getNumDigits(descriptionHash));
         hash +=  descriptionHash;//adding String's hash code to consider both date and description
         return hash;
+    }
+
+    /**
+     * using the clone methods of String and Date classes to deep copy Task
+     * @param task that needs to be cloned
+     * @return cloned Task
+     */
+    public Task clone(Task task){
+        try{
+            Method descCloneMethod = String.class.getMethod("clone");
+            String newDescription = (String) descCloneMethod.invoke(task.description);
+            Method dateCloneMethod = Date.class.getMethod("clone");
+            Date newDueDate =(Date) dateCloneMethod.invoke(task.dueDate);
+            Task cloned = new Task(newDescription, newDueDate);
+            return cloned;
+        }
+        catch(NoSuchMethodException e){return null;}
+        catch(IllegalAccessException e){return null;}
+        catch (InvocationTargetException e){return null;}
+        }
+
+
     }
 }
