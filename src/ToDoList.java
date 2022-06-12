@@ -90,8 +90,9 @@ public class ToDoList implements TaskIterable{
     }
 
     @Override
-    public Iterator iterator(){
-        return new ToDoListIterator(taskList, limitDueDate);
+    public Iterator<Task> iterator(){
+        Iterator<Task> Itr = new ToDoListIterator(taskList, limitDueDate);
+        return Itr;
     }
 
     /**
@@ -117,17 +118,17 @@ public class ToDoList implements TaskIterable{
     public ToDoList clone(){
         Task[] cloned = new Task[taskList.size()]; //using array so we can use the constractor
         int index = 0;
-        for(Object task: taskList){
-            cloned[index] = (Task)task.clone();
+        for(Task task: taskList){
+            cloned[index] = task.clone();
             index++;
         }
         return new ToDoList(cloned);
     }
 
     /**
-     *
-     * @param other
-     * @return
+     * determine equality by hash code since it is unique.
+     * @param other - list to compare
+     * @return true if equals and false if not
      */
     @Override
     public boolean equals(Object other){
