@@ -28,6 +28,8 @@ public class ToDoList implements TaskIterable{
         this(null, tasks);
     }
 
+    public ToDoList(){this(null, new Task[0]);}
+
     /**
      * @param num
      * @return number of digit in num
