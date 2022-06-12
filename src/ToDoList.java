@@ -39,7 +39,7 @@ public class ToDoList {
     }
 
     /**
-     * cheking if the new task already exists' if not adding it to the ToDoList
+     * checking if the new task already exists' if not adding it to the ToDoList
      * @param newTask
      * @throws TaskAlreadyExistsException
      */
@@ -49,7 +49,19 @@ public class ToDoList {
                 throw new TaskAlreadyExistsException();
             }
             else{
-                //TODO איך להוסיף שזה ממויין
+                int index = 0; //run with an index to save the place where we want to add the Task
+                for (Task current : this.taskList) {
+                    //task.date <= current.date
+                    if (newTask.getDueDate().compareTo(current.getDueDate()) <= 0){
+                        //task.description <= current.description
+                        if (newTask.getDescription().compareTo(current.getDescription()) <= 0) {
+                            this.taskList.add(index, newTask);
+                            break; //added the Task, can move on to the next one
+                        }
+                    }
+                    index++;
+                }
+
 
             }
         }
