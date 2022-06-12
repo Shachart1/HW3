@@ -43,7 +43,6 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
     /**
      * saving the element from head, and change the head index.
      * @return head element
-     * @throws EmptyQueueException
      */
     @Override
     public E dequeue(){
