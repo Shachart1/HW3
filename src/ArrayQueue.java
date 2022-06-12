@@ -28,7 +28,11 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
         }
     }
 
-    public int getTailIndex(){
+    protected E getElement(int index){
+        return (E) queueArray[index%queueArray.length];
+    }
+
+    protected int getTailIndex(){
         return this.tail;
     }
 
@@ -68,7 +72,7 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
 
     @Override
     public E peek(){
-        if(queueSize ==0 ){
+        if(queueSize == 0){
             throw new EmptyQueueException();
         }
         return (E)this.queueArray[head];}
@@ -120,7 +124,7 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
      */
     @Override
     public Iterator iterator() {
-        return new ArrayQueueIterator();
+        return new ArrayQueueIterator(this.head, this);
     }
 
 
