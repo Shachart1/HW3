@@ -20,6 +20,19 @@ public class Task {
     }
 
     /**
+     * @param num
+     * @return number of digit in num
+     */
+    private int getNumDigits(int num){
+        int count = 0;
+        while(num != 0){
+            num = num/10;
+            count++;
+        }
+        return count;
+    }
+
+    /**
      * @return String describing the Task in the format: "(description, date)"
      */
     @Override
@@ -53,9 +66,8 @@ public class Task {
         int hash = 0;
         hash += this.dueDate.hashCode(); //using Date's hash code
         int descriptionHash = this.description.hashCode();
-        hash *= 10^(descriptionHash + 1);
+        hash *= 10^(getNumDigits(descriptionHash));
         hash +=  descriptionHash;//adding String's hash code to consider both date and description
         return hash;
     }
-
 }

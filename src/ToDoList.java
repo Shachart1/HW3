@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class ToDoList {
@@ -14,6 +15,19 @@ public class ToDoList {
         for (Task task : tasks) {
             addTask(task);
         }
+    }
+
+    /**
+     * @param num
+     * @return number of digit in num
+     */
+    private int getNumDigits(int num){
+        int count = 0;
+        while(num != 0){
+            num = num/10;
+            count++;
+        }
+        return count;
     }
 
     /**
@@ -52,8 +66,14 @@ public class ToDoList {
                     }
                     index++;
                 }
-                if(index == this.taskList.size()){this.taskList.add(index, newTask);} //if reached the end of the list then add
+                //if reached the end of the list then add
+                if(index == this.taskList.size()){this.taskList.add(index, newTask);}
             }
         }
+    }
+
+    @Override
+    public Iterator iterator(){
+        return new toDoListIterator()
     }
 }
