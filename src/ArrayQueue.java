@@ -4,8 +4,7 @@ import java.util.Iterator;
 
 public class ArrayQueue<E extends Cloneable> implements Queue{
     Cloneable[] queueArray;
-    int tail = 0;  //שיניתי שם ל index
-    //int maxCapacity; במקום פשוט אורך המארך
+    int tail = 0;
     int head = 0;
     int queueSize = 0;
 
