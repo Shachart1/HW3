@@ -13,6 +13,7 @@ public class ToDoListIterator implements Iterator{
 
     @Override
     public boolean hasNext(){return false;}
+
     @Override
-    public Task next(){}
+    public Task next(){return new Task( "sds", new Date());}
 }

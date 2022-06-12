@@ -7,15 +7,25 @@ public class ToDoList implements TaskIterable{
     Date limitDueDate = null;
 
     /**
-     * adding the given tasks to the taskList using the addTask method
-     * @param tasks
+     * for inside usage in case of clone
+     * @param limitDueDate - dueDate limit for the Iterator
+     * @param tasks - array of tasks to be entered to the toDoList
      */
-    public ToDoList(Task... tasks) {
+    private ToDoList(Date limitDueDate, Task...tasks){
         this.taskList = new LinkedList<Task>();
         if(tasks.length==0){return;}
         for (Task task : tasks) {
             addTask(task);
         }
+        this.limitDueDate = limitDueDate;
+    }
+
+    /**
+     * adding the given tasks to the taskList using the addTask method
+     * @param tasks - array of tasks to be entered to the toDoList
+     */
+    public ToDoList(Task... tasks) {
+        this(null, tasks);
     }
 
     /**
@@ -45,8 +55,9 @@ public class ToDoList implements TaskIterable{
     }
 
     /**
-     * checking if the new task already exists' if not adding it to the ToDoList
-     * @param newTask
+     * checking if the new task already exists' if not adding it to the ToDoList by order
+     * sorted first by Date and then by Description
+     * @param newTask - task to add to the ToDoList
      * @throws TaskAlreadyExistsException
      */
     public void addTask(Task newTask) {
@@ -82,14 +93,50 @@ public class ToDoList implements TaskIterable{
     public Iterator iterator(){
         return new ToDoListIterator(taskList, limitDueDate);
     }
+
+    /**
+     * create the hash code using the hash codes of every task and chaining them.
+     * the format is: T1T2T3...Tn where Tk is the hash code of kTH Task
+     * @return unique hash code
+     */
     @Override
     public int hashCode(){
         int hash = 0;
-        for(Task task: this){
+        for(Object task: this){
             hash*=10^(getNumDigits(task.hashCode()));
-            hash+= super.hashCode(task);//adding String's hash code to consider both date and description
+            hash+= task.hashCode();//adding String's hash code to consider both date and description
         }
         return hash;
     }
 
+    /**
+     * use Task's clone method to deep clone the ToDoList(clone every element)
+     * @return deep clone of ToDoList
+     */
+    @Override
+    public ToDoList clone(){
+        Task[] cloned = new Task[taskList.size()]; //using array so we can use the constractor
+        int index = 0;
+        for(Object task: taskList){
+            cloned[index] = (Task)task.clone();
+            index++;
+        }
+        return new ToDoList(cloned);
+    }
+
+    /**
+     *
+     * @param other
+     * @return
+     */
+    @Override
+    public boolean equals(Object other){
+        if(this == other){return true;}
+        if(other instanceof ToDoList){
+            if(this.hashCode() == other.hashCode()){ //using hash code since it has unique values
+                return true;
+            }
+        }
+        return false;
+    }
 }
