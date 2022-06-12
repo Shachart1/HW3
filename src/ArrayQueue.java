@@ -101,11 +101,12 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
 
     @Override
     public ArrayQueue<E> clone(){
-        ArrayQueue cloned = new ArrayQueue(this.queueSize);
-        for(Cloneable element: this.queueArray){
+        ArrayQueue cloned = new ArrayQueue(this.queueArray.length);
+        for(Object element: this){
             try {
                 Method cloneMethod = element.getClass().getMethod("clone");
-                cloned.enqueue((Cloneable) cloneMethod.invoke(element)); // upcasting in order to insert to queue
+                Cloneable temp = (Cloneable) cloneMethod.invoke(element);// upcasting in order to insert to queue
+                cloned.enqueue(temp);
             }
             // Can't happen since E extends Cloneable
             catch(NoSuchMethodException e){return null;}
@@ -123,7 +124,7 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
      */
     @Override
     public Iterator iterator() {
-        return new ArrayQueueIterator(this.head, this);
+        return new ArrayQueueIterator(this.head, this, this.queueArray.length);
     }
 
 
