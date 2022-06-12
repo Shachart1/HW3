@@ -37,4 +37,21 @@ public class ToDoList {
         }
         return finalString + "]";
     }
+
+    /**
+     * cheking if the new task already exists' if not adding it to the ToDoList
+     * @param newTask
+     * @throws TaskAlreadyExistsException
+     */
+    public void addTask(Task newTask) {
+        for(Task node:this.taskList){
+            if(newTask.equals(node)){
+                throw new TaskAlreadyExistsException();
+            }
+            else{
+                //TODO איך להוסיף שזה ממויין
+
+            }
+        }
+    }
 }
