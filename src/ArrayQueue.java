@@ -8,9 +8,11 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
     int head = 0;
     int queueSize = 0;
 
-    //TODO - add the option to get a list of cloneable
+
     /**
+     *
      * @param maxCapacity - length of line
+     * @param elements - list of elements to enter to the queue by order
      * @throws NegativeCapacityException - if maxCapacitiy is negative
      */
     public ArrayQueue(int maxCapacity, E... elements) {// לא צריך להצהיר בגלל שזה חריגה בלתי מסומנת יעני runtime
@@ -23,6 +25,10 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
         for(E element: elements){
             this.enqueue(element);
         }
+    }
+
+    public int getTailIndex(){
+        return this.tail;
     }
 
     /**
@@ -92,7 +98,7 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
     @Override
     public ArrayQueue<E> clone(){
         ArrayQueue cloned = new ArrayQueue(this.queueSize);
-        for(E element: this.queueArray){
+        for(Cloneable element: this.queueArray){
             try {
                 Method cloneMethod = element.getClass().getMethod("clone");
                 cloned.enqueue((Cloneable) cloneMethod.invoke(element)); // upcasting in order to insert to queue
@@ -107,12 +113,17 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
         return cloned;
     }
 
+    /**
+     * Create iterator to go over this ArrayQueue
+     * @return ArrayQueueIterator to go over this specific ArrayQueue
+     */
     @Override
     public Iterator iterator() {
-        return null;
+        return new ArrayQueueIterator();
     }
 
+
     //CHANGES
-    // כל החריכות שלנו הן בלתי מסומנות אז הורדתי את ההצהרות שלהן
+    // כל החריגות שלנו הן בלתי מסומנות אז הורדתי את ההצהרות שלהן
 
 }
