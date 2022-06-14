@@ -56,7 +56,7 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
     public void enqueue(Cloneable element){
         // if null then the queue is empty. if not null then the tail has reached the head
 
-        if (this.queueSize == queueArray.length){  //במקום אינדקס ולהסתמך על זה שזה לא null
+        if (this.queueSize == queueArray.length){
             throw new QueueOverflowException();
         }
 //        if(this.tail == this.head && this.queueArray[this.tail]!=null){}
@@ -77,8 +77,6 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
         //queueArray[head] =null;    אין צורך כי אנחנו עובדים עם queueSize
         this.head = (this.head +1)%this.queueArray.length;
         queueSize--;
-        //if (head+1==queueArray.length){head=0;} //If we got to the max capacity return head to first cell.
-       // else {head++;}//If there is still room in the array, promote head to next.
         return element;
     }
 
@@ -147,9 +145,4 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
     public Iterator iterator() {
         return new ArrayQueueIterator(this.head, this, this.queueArray.length);
     }
-
-
-    //CHANGES
-    // כל החריגות שלנו הן בלתי מסומנות אז הורדתי את ההצהרות שלהן
-
 }

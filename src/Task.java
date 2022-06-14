@@ -81,7 +81,7 @@ public class Task {
 
     /**
      * using the clone methods of Date class and creating a copy of String manually to deep copy Task
-     * @return cloned Task
+     * @return cloned Task/ null if caught exception
      */
     public Task clone(){
         try{
