@@ -2,27 +2,53 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class ToDoListIterator implements Iterator<Task>{
+public class ToDoListIterator implements Iterator<Task> {
     LinkedList<Task> list;
     Date dueDate;
-    int index = 0;
+    Task current;
 
-    public ToDoListIterator(LinkedList list, Date dueDate){
-        this.list = list;
+    public ToDoListIterator(LinkedList list, Date dueDate) {
+        this.list = (LinkedList<Task>) list.clone();
         this.dueDate = dueDate;
-    }
-
-    @Override
-    public boolean hasNext(){
-        Task current = list.get(index);
-        if(dueDate == null && list.get(index) != null){ //if there is no due date we want to go through all the tasks
-            return true;
+        if (this.list.isEmpty()) {
+            this.current = null;
         }
-        return current.getDueDate().compareTo(dueDate) < 0; // if current due date is smaller than provided due date, we want it
+        else{this.current = this.list.getFirst();}
     }
 
     @Override
-    public Task next(){
-        index++;
-        return list.get(index-1);}
+    public boolean hasNext() {
+        if (this.list.isEmpty()) {
+            return false;
+        }
+        for (Task task : this.list) {
+            if (this.dueDate == null || task.dueDate.compareTo(this.dueDate) <= 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Task next() {
+        Task min = this.list.getFirst();
+        for (Task task : this.list) {
+            if(task.getDueDate().compareTo(min.getDueDate()) < 0){
+                if(this.dueDate == null || task.dueDate.compareTo(this.dueDate) <= 0) {
+                    min = task;
+                }
+                continue;
+            }
+            if (task.getDueDate().compareTo(min.getDueDate()) == 0){
+                if(task.getDescription().compareTo(min.getDescription()) < 0){
+                    if(this.dueDate == null || task.dueDate.compareTo(this.dueDate) <= 0) {
+                        min = task;
+                    }
+                }
+            }
+        }
+        this.list.remove(min);
+        this.current = min;
+        return min;
+    }
 }

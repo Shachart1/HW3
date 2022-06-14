@@ -10,7 +10,7 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
 
 
     /**
-     *
+     * constructor that creates a queue with max capacity - maxCapacity
      * @param maxCapacity - length of line
      * @param elements - list of elements to enter to the queue by order
      * @throws NegativeCapacityException - if maxCapacitiy is negative
@@ -26,6 +26,18 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
             this.enqueue(element);
         }
     }
+
+    public void setHead(int head){
+        this.head = head;
+    }
+
+    public void setTail(int tail){
+        this.tail = tail;
+    }
+
+    /**
+     * Getters
+     */
 
     protected E getElement(int index){
         return (E) queueArray[index%queueArray.length];
@@ -56,6 +68,7 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
     /**
      * saving the element from head, and change the head index.
      * @return head element
+     * @throws EmptyQueueException - trying to take out an element from an empty queue
      */
     @Override
     public E dequeue(){
@@ -69,6 +82,11 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
         return element;
     }
 
+    /**
+     * gets the value of the first element in the queue without removing it
+     * @return value of the first element in the queue
+     * @throws EmptyQueueException - trying to peek at an empty queue
+     */
     @Override
     public E peek(){
         if(queueSize == 0){
@@ -84,10 +102,6 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
     @Override
     public int size(){
         return this.queueSize;
-        //לא צריךךךך
-        // if(head == tail) return 0;
-       // if(head< tail){return tail -head-1;} //-1 cause index shows the next free spot
-        //else{return (tail +maxCapacity) - head - 1;} // adding maxCapacity to get the index to be infront
     }
 
     /**
@@ -99,9 +113,16 @@ public class ArrayQueue<E extends Cloneable> implements Queue{
         return size()==0;
     }
 
+
+    /**
+     * cloning each element using "invoke" and then adding it to the new cloned queue in order
+     * @return deep clone of the original queue
+     */
     @Override
     public ArrayQueue<E> clone(){
+        // Initialize the cloned array
         ArrayQueue cloned = new ArrayQueue(this.queueArray.length);
+        // Clone the elements
         for(Object element: this){
             try {
                 Method cloneMethod = element.getClass().getMethod("clone");

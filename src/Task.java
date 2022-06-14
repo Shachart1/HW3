@@ -43,8 +43,12 @@ public class Task {
      */
     @Override
     public String toString(){
-        return "(" + this.description + ", " +
-                this.dueDate.getDay() + "." + this.dueDate.getMonth() + "." + this.dueDate.getYear() + ")";
+        if(this.dueDate.getMonth()+1 < 10){
+            return  this.description + ", " +
+                    this.dueDate.getDate() + ".0" + (this.dueDate.getMonth() + 1) + "." + (this.dueDate.getYear()+1900);
+        }
+        return  this.description + ", " +
+                this.dueDate.getDate() + "." + (this.dueDate.getMonth() + 1) + "." + (this.dueDate.getYear()+1900);
     }
 
     /**
@@ -64,32 +68,30 @@ public class Task {
 
     /**
      * using String's and Date's hashCode methods to determine the hashCode of a given task
-     * the format will be: dateHash0stringHash
-     * @return hash code combined from the date's hash value and the description's hash value
+     * @return hash code is sum of the date's hash value and the description's hash value
      */
     @Override
     public int hashCode(){
         int hash = 0;
         hash += this.dueDate.hashCode(); //using Date's hash code
         int descriptionHash = this.description.hashCode();
-        hash *= 10^(getNumDigits(descriptionHash));
         hash +=  descriptionHash;//adding String's hash code to consider both date and description
         return hash;
     }
 
     /**
-     * using the clone methods of String and Date classes to deep copy Task
+     * using the clone methods of Date class and creating a copy of String manually to deep copy Task
      * @return cloned Task
      */
     public Task clone(){
         try{
-            Method descCloneMethod = String.class.getMethod("clone");
-            String newDescription = (String) descCloneMethod.invoke(this.description);
+            String newDescription = new String(this.description);
             Method dateCloneMethod = Date.class.getMethod("clone");
             Date newDueDate =(Date) dateCloneMethod.invoke(this.dueDate);
             Task cloned = new Task(newDescription, newDueDate);
             return cloned;
         }
+
         catch(NoSuchMethodException e){return null;}
         catch(IllegalAccessException e){return null;}
         catch (InvocationTargetException e){return null;}

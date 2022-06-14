@@ -15,7 +15,7 @@ public class ToDoList implements TaskIterable{
         this.taskList = new LinkedList<Task>();
         if(tasks.length==0){return;}
         for (Task task : tasks) {
-            addTask(task);
+            if(task != null){addTask(task);} //tasks is array so will go over all elemenets even if null
         }
         this.limitDueDate = limitDueDate;
     }
@@ -49,9 +49,16 @@ public class ToDoList implements TaskIterable{
      */
     @Override
     public String toString(){
+        int firstPrint = 1;
         String finalString = "[";
         for(Task node:this.taskList){
-            finalString += ", " + node.toString();
+            if(firstPrint == 0) {
+                finalString += ", (" + node.toString() +")";
+            }
+            else{
+                firstPrint = 0;
+                finalString += "(" + node.toString() + ")";
+            }
         }
         return finalString + "]";
     }
@@ -60,30 +67,15 @@ public class ToDoList implements TaskIterable{
      * checking if the new task already exists' if not adding it to the ToDoList by order
      * sorted first by Date and then by Description
      * @param newTask - task to add to the ToDoList
-     * @throws TaskAlreadyExistsException
+     * @throws TaskAlreadyExistsException - trying to add a task that already exists
      */
     public void addTask(Task newTask) {
-        for(Task node:this.taskList){
-            if(newTask.equals(node)){
+        for (Task node : this.taskList) {
+            if (newTask.getDescription().compareTo(node.getDescription()) == 0) {
                 throw new TaskAlreadyExistsException();
             }
-            else{
-                int index = 0; //run with an index to save the place where we want to add the Task
-                for (Task current : this.taskList) {
-                    //task.date <= current.date
-                    if (newTask.getDueDate().compareTo(current.getDueDate()) <= 0){
-                        //task.description <= current.description
-                        if (newTask.getDescription().compareTo(current.getDescription()) <= 0) {
-                            this.taskList.add(index, newTask);
-                            break; //added the Task, can move on to the next one
-                        }
-                    }
-                    index++;
-                }
-                //if reached the end of the list then add
-                if(index == this.taskList.size()){this.taskList.add(index, newTask);}
-            }
         }
+            this.taskList.add(newTask);
     }
 
     @Override
@@ -98,17 +90,18 @@ public class ToDoList implements TaskIterable{
     }
 
     /**
-     * create the hash code using the hash codes of every task and chaining them.
-     * the format is: T1T2T3...Tn where Tk is the hash code of kTH Task
+     * create the hash code using the hash codes of every task and sum them
      * @return unique hash code
      */
     @Override
     public int hashCode(){
         int hash = 0;
-        for(Object task: this){
-            hash*=10^(getNumDigits(task.hashCode()));
+        Date tempScan = this.limitDueDate; // we want to go over all the list. we need the limit due date to be null
+        setScanningDueDate(null);
+        for(Object task: this){ // go over the elements in a sorted manner
             hash+= task.hashCode();//adding String's hash code to consider both date and description
         }
+        setScanningDueDate(tempScan); // move limit due date back to what it was
         return hash;
     }
 
@@ -118,7 +111,9 @@ public class ToDoList implements TaskIterable{
      */
     @Override
     public ToDoList clone(){
-        Task[] cloned = new Task[taskList.size()]; //using array so we can use the constractor
+
+
+        Task[] cloned = new Task[taskList.size()]; //using array so we can use the constructor
         int index = 0;
         for(Task task: taskList){
             cloned[index] = task.clone();
@@ -135,6 +130,7 @@ public class ToDoList implements TaskIterable{
     @Override
     public boolean equals(Object other){
         if(this == other){return true;}
+        if(other == null){return false;}
         if(other instanceof ToDoList){
             if(this.hashCode() == other.hashCode()){ //using hash code since it has unique values
                 return true;
